@@ -1,3 +1,4 @@
+from re import T
 from django.db import models
 
 # Create your models here.
@@ -10,7 +11,7 @@ class ProductList(models.Model):
     warehouse = models.CharField(max_length=50) # code of warehouse
     qty_in_wh = models.FloatField() # quantity in warehouse
     price = models.FloatField()
-    image_urel = models.URLField()
+    image_urel = models.ImageField(upload_to='images/', blank=True, null=True)
 
     def __str__(self):
         return self.item_name
