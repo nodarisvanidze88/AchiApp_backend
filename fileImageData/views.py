@@ -6,8 +6,9 @@ from rest_framework.decorators import api_view
 from .models import ProductList, Users
 from django.http import JsonResponse
 from rest_framework.response import Response
-import json
-from .serializers import CollectedProductSerializer
+from rest_framework import viewsets
+from .serializers import CollectedProductSerializer, CustomersSerializer
+from .models import Customers
 
 @api_view(['GET'])
 def getCSVFile(request):
@@ -104,4 +105,8 @@ def addCollectedData(request):
       else:
          print(serializer.errors)
       return Response(serializer.errors, status=400)
+   
+class CustomersList(viewsets.ModelViewSet):
+  queryset = Customers.objects.all()
+  serializer_class = CustomersSerializer
       
