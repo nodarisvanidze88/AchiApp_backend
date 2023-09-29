@@ -1,4 +1,5 @@
 
+from pyexpat import model
 from django.db import models
 
 # Create your models here.
@@ -30,17 +31,15 @@ class Customers(models.Model):
     def __str__(self):
         return f'({self.identification}) - {self.customer_name}'
 
-    
-
-
 class CollectedProduct(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='supervizer')
+    customer_info = models.ForeignKey(Customers, on_delete=models.CASCADE, related_name='customer_Info')
     product_ID = models.ForeignKey(ProductList, on_delete=models.CASCADE, related_name='selectedItem')
     quantity = models.IntegerField()
-    date = models.DateField(auto_now=True)
+    date = models.DateField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.date} {self.user} {self.product_ID} {self.quantity}"
+        return f"{self.date} {self.user} {self.customer_info} {self.product_ID} {self.quantity}"
 
 
 

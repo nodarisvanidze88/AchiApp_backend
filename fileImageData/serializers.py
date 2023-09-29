@@ -5,9 +5,9 @@ from .models import Customers
 class CollectedProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = CollectedProduct
-        fields= ['user','product_ID','quantity', 'date']
+        fields= ['user','customer_info','product_ID','quantity', 'date']
 
 class CustomersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customers
-        fields = '__all__'
+        fields = ['id','identification','customer_name','customer_address']
